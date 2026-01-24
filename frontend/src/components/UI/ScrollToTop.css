@@ -1,0 +1,133 @@
+.scroll-to-top {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  animation: slideInUp 0.3s ease-out;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 1);
+}
+
+.scroll-to-top:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.scroll-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-ring {
+  position: absolute;
+  transform: rotate(-90deg);
+  color: #667eea;
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.1s ease;
+  stroke-linecap: round;
+}
+
+.scroll-icon {
+  color: #667eea;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.scroll-to-top:hover .scroll-icon {
+  color: #5a67d8;
+  transform: translateY(-2px);
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .scroll-to-top {
+    bottom: 90px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .progress-ring {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .progress-ring-circle {
+    r: 21;
+    cx: 25;
+    cy: 25;
+  }
+  
+  .scroll-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .scroll-to-top {
+    background: rgba(31, 41, 55, 0.95);
+    border-color: rgba(75, 85, 99, 0.3);
+  }
+  
+  .scroll-to-top:hover {
+    background: rgba(31, 41, 55, 1);
+  }
+}
+
+/* Accessibility */
+.scroll-to-top:focus-visible {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .progress-ring-circle {
+    transition: none !important;
+  }
+}

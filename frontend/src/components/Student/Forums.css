@@ -1,0 +1,42 @@
+.forums-container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+.forums-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+.forums-header h1 { font-size: 32px; font-weight: 700; color: #1f2937; margin-bottom: 8px; }
+.forums-header p { color: #6b7280; font-size: 16px; }
+.new-thread-btn { display: flex; align-items: center; gap: 8px; padding: 12px 24px; background: #A4C2A5; color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.new-thread-btn:hover { background: #8FA98F; transform: translateY(-2px); }
+.forums-toolbar { background: white; padding: 24px; border-radius: 16px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+.search-bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; margin-bottom: 16px; }
+.search-bar input { flex: 1; border: none; background: transparent; font-size: 14px; outline: none; }
+.category-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.category-tab { padding: 8px 16px; background: transparent; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; font-weight: 500; color: #6b7280; cursor: pointer; transition: all 0.2s; }
+.category-tab:hover { border-color: #A4C2A5; color: #A4C2A5; }
+.category-tab.active { background: #A4C2A5; color: white; border-color: #A4C2A5; }
+.threads-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+.thread-card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; cursor: pointer; }
+.thread-card:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transform: translateY(-2px); }
+.thread-main { display: flex; gap: 16px; flex: 1; }
+.thread-icon { width: 48px; height: 48px; background: #f0fdf4; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #A4C2A5; flex-shrink: 0; }
+.thread-content h3 { font-size: 18px; font-weight: 600; color: #1f2937; margin-bottom: 8px; }
+.thread-content p { font-size: 14px; color: #6b7280; margin-bottom: 12px; line-height: 1.5; }
+.thread-meta { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.category-badge { padding: 4px 12px; background: #A4C2A5; color: white; border-radius: 12px; font-size: 12px; font-weight: 600; }
+.thread-meta span { display: flex; align-items: center; gap: 4px; font-size: 13px; color: #6b7280; }
+.thread-stats { display: flex; flex-direction: column; gap: 12px; padding-left: 24px; border-left: 1px solid #e5e7eb; }
+.stat { display: flex; align-items: center; gap: 8px; color: #6b7280; font-size: 14px; white-space: nowrap; }
+.trending-section { background: white; padding: 24px; border-radius: 16px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+.trending-section h3 { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: #1f2937; margin-bottom: 16px; }
+.trending-list { display: flex; gap: 12px; flex-wrap: wrap; }
+.trending-item { padding: 8px 16px; background: #f0fdf4; color: #16a34a; border-radius: 8px; font-size: 14px; font-weight: 600; }
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modal-content { background: white; border-radius: 16px; padding: 32px; max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto; }
+.modal-content h2 { font-size: 24px; font-weight: 700; margin-bottom: 24px; }
+.modal-content .form-group { margin-bottom: 20px; }
+.modal-content label { display: block; font-weight: 600; margin-bottom: 8px; }
+.modal-content input, .modal-content textarea, .modal-content select { width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 14px; }
+.modal-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; }
+.cancel-btn, .submit-btn { padding: 10px 20px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.cancel-btn { background: #f3f4f6; color: #6b7280; }
+.submit-btn { background: #A4C2A5; color: white; }
+.empty-state { text-align: center; padding: 64px 32px; color: #6b7280; }
+.empty-state svg { margin: 0 auto 16px; opacity: 0.3; }
+@media (max-width: 768px) { .thread-card { flex-direction: column; align-items: flex-start; } .thread-stats { flex-direction: row; padding-left: 0; padding-top: 16px; border-left: none; border-top: 1px solid #e5e7eb; width: 100%; } }

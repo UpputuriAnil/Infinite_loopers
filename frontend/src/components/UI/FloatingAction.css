@@ -1,0 +1,271 @@
+.fab-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.fab-main {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #A4C2A5;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(164, 194, 165, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.fab-main:hover {
+  box-shadow: 0 4px 12px rgba(164, 194, 165, 0.4);
+  background: #8fb490;
+}
+
+.fab-main:active {
+  transform: scale(0.95);
+}
+
+.fab-container.open .fab-main {
+  transform: rotate(45deg);
+  background: #ef4444;
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+.fab-icon {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.fab-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.fab-main:active .fab-ripple {
+  width: 100px;
+  height: 100px;
+}
+
+.fab-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.fab-container.open .fab-actions {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.fab-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transform: translateX(100px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: var(--delay);
+}
+
+.fab-container.open .fab-action {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.fab-action-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.fab-action-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.fab-action:hover .fab-action-button::before {
+  left: 100%;
+}
+
+.fab-action:hover .fab-action-button {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.fab-action-label {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.fab-action:hover .fab-action-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fab-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  z-index: -1;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes cosmicFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Pulse animation for main button */
+.fab-main::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  animation: pulse 2s infinite;
+  z-index: -1;
+}
+
+@keyframes cosmicPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .fab-container {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .fab-main {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .fab-action-button {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .fab-action-label {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .fab-main,
+  .fab-actions,
+  .fab-action,
+  .fab-action-button,
+  .fab-action-label {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Focus states for keyboard navigation */
+.fab-main:focus-visible,
+.fab-action-button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
