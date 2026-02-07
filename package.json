@@ -1,0 +1,14 @@
+{
+  "name": "infinite-loopers",
+  "version": "1.0.0",
+  "description": "Learning Management System - Full Stack Application",
+  "scripts": {
+    "start:backend": "cd mybackend && npm run dev",
+    "start:frontend": "cd frontend && npm start",
+    "install:all": "npm install && cd mybackend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build"
+  },
+  "keywords": ["lms", "education", "react", "nodejs", "mongodb"],
+  "author": "Upputuri Anil",
+  "license": "MIT"
+}
