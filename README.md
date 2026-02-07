@@ -2,7 +2,7 @@
 
 A modern Learning Management System for educators and students.
 
-## � Quick Setup
+##  Quick Setup
 
 ### 1. Clone
 ```bash
