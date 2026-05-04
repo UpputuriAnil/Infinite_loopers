@@ -633,34 +633,29 @@
   opacity: 0;
 }
 
-
-
 .auth-footer {
   text-align: center;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(164, 194, 165, 0.15);
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .auth-footer p {
-  color: #64748b;
-  margin: 0;
-  font-size: 14px;
-  font-weight: 500;
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
 }
 
 .auth-link {
-  color: #A4C2A5 !important;
+  color: #4CAF50;
   text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  font-size: 14px;
-  background: none !important;
-  border: none !important;
-  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .auth-link:hover {
+  color: #45a049;
+  text-decoration: underline;
   color: #8fb490 !important;
   text-decoration: none;
   transform: translateX(2px);

@@ -6,6 +6,13 @@ import { useAuth } from './contexts/AuthContext';
 import Auth from './components/Auth/Auth';
 import ForgotPassword from './components/Auth/ForgotPassword';
 import ResetPassword from './components/Auth/ResetPassword';
+import LandingPage from './components/Auth/LandingPage';
+import StudentLogin from './components/Auth/StudentLogin';
+import TeacherLogin from './components/Auth/TeacherLogin';
+import AdminLogin from './components/Auth/AdminLogin';
+import StudentSignup from './components/Auth/StudentSignup';
+import TeacherSignup from './components/Auth/TeacherSignup';
+import AdminSignup from './components/Auth/AdminSignup';
 import Dashboard from './components/Dashboard/Dashboard';
 import CourseList from './components/Courses/CourseList';
 import CourseDetail from './components/Courses/CourseDetail';
@@ -45,14 +52,57 @@ function AppContent() {
       {user && <Navbar />}
       <main className="main-content">
         <Routes>
+          {/* Landing Page */}
+          <Route path="/" element={<LandingPage />} />
+          
+          {/* Role-based Login Routes */}
           <Route path="/login" element={
             <PublicRoute>
-              <Auth />
+              <LandingPage />
             </PublicRoute>
           } />
+          <Route path="/login/student" element={
+            <PublicRoute>
+              <StudentLogin />
+            </PublicRoute>
+          } />
+          <Route path="/login/teacher" element={
+            <PublicRoute>
+              <TeacherLogin />
+            </PublicRoute>
+          } />
+          <Route path="/login/admin" element={
+            <PublicRoute>
+              <AdminLogin />
+            </PublicRoute>
+          } />
+          
+          {/* Role-based Signup Routes */}
+          <Route path="/signup" element={
+            <PublicRoute>
+              <LandingPage />
+            </PublicRoute>
+          } />
+          <Route path="/signup/student" element={
+            <PublicRoute>
+              <StudentSignup />
+            </PublicRoute>
+          } />
+          <Route path="/signup/teacher" element={
+            <PublicRoute>
+              <TeacherSignup />
+            </PublicRoute>
+          } />
+          <Route path="/signup/admin" element={
+            <PublicRoute>
+              <AdminSignup />
+            </PublicRoute>
+          } />
+          
+          {/* Legacy Routes */}
           <Route path="/register" element={
             <PublicRoute>
-              <Auth />
+              <LandingPage />
             </PublicRoute>
           } />
           <Route path="/forgot-password" element={
@@ -177,7 +227,7 @@ function AppContent() {
               </div>
             </ProtectedRoute>
           } />
-          <Route path="/" element={<Navigate to={user ? "/dashboard" : "/login"} />} />
+          <Route path="/" element={<Navigate to={user ? "/dashboard" : "/"} />} />
         </Routes>
       </main>
       
