@@ -16,20 +16,21 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // Set up axios defaults
-  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+  const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
   
   // Set default axios baseURL
   axios.defaults.baseURL = API_BASE_URL;
 
   const logout = useCallback(() => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userRole');
     delete axios.defaults.headers.common['Authorization'];
     setUser(null);
   }, []);
 
   const fetchUser = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/auth/me');
+      const response = await axios.get('http://localhost:8000/api/auth/me');
       if (response.data.success) {
         setUser(response.data.data.user);
       } else {
@@ -54,16 +55,19 @@ export const AuthProvider = ({ children }) => {
     }
   }, [fetchUser]);
 
-  const login = async (email, password) => {
+  const login = async (email, password, role = 'student', adminCode = null) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
-        email,
-        password
-      });
+      const loginData = { email, password, role };
+      if (role === 'admin' && adminCode) {
+        loginData.adminCode = adminCode;
+      }
+      
+      const response = await axios.post('http://localhost:8000/api/auth/login', loginData);
       
       if (response.data.success) {
         const { user, token } = response.data.data;
         localStorage.setItem('token', token);
+        localStorage.setItem('userRole', role);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         setUser(user);
         return { success: true };
@@ -80,7 +84,7 @@ export const AuthProvider = ({ children }) => {
       if (error.code === 'ECONNREFUSED' || error.code === 'ERR_NETWORK') {
         return {
           success: false,
-          error: 'Cannot connect to server. Please make sure the backend server is running on http://localhost:5000'
+          error: 'Cannot connect to server. Please make sure backend server is running on http://localhost:8000'
         };
       }
       
@@ -93,13 +97,14 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const fullUrl = 'http://localhost:5000/api/auth/register';
+      const fullUrl = 'http://localhost:8000/api/auth/register';
       console.log('🔍 Registration attempt to:', fullUrl);
       const response = await axios.post(fullUrl, userData);
       
       if (response.data.success) {
         const { user, token } = response.data.data;
         localStorage.setItem('token', token);
+        localStorage.setItem('userRole', userData.role);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         setUser(user);
         return { success: true };
@@ -116,7 +121,7 @@ export const AuthProvider = ({ children }) => {
       if (error.code === 'ECONNREFUSED' || error.code === 'ERR_NETWORK') {
         return {
           success: false,
-          error: 'Cannot connect to server. Please make sure the backend server is running on http://localhost:5000'
+          error: 'Cannot connect to server. Please make sure backend server is running on http://localhost:8000'
         };
       }
       

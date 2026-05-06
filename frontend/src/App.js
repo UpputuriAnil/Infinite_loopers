@@ -34,14 +34,9 @@ import ScrollToTop from './components/UI/ScrollToTop';
 import Navbar from './components/Layout/Navbar';
 import './App.css';
 
-function ProtectedRoute({ children }) {
-  const { user } = useAuth();
-  return user ? children : <Navigate to="/login" />;
-}
-
+// All routes are now public - no authentication required
 function PublicRoute({ children }) {
-  const { user } = useAuth();
-  return !user ? children : <Navigate to="/dashboard" />;
+  return children;
 }
 
 function AppContent() {
@@ -115,119 +110,47 @@ function AppContent() {
               <ResetPassword />
             </PublicRoute>
           } />
-          <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/courses" element={
-            <ProtectedRoute>
-              <CourseList />
-            </ProtectedRoute>
-          } />
-          <Route path="/courses/:id" element={
-            <ProtectedRoute>
-              <CourseDetail />
-            </ProtectedRoute>
-          } />
-          <Route path="/create-course" element={
-            <ProtectedRoute>
-              <CreateCourse />
-            </ProtectedRoute>
-          } />
-          <Route path="/assignments" element={
-            <ProtectedRoute>
-              <AssignmentList />
-            </ProtectedRoute>
-          } />
-          <Route path="/create-assignment" element={
-            <ProtectedRoute>
-              <CreateAssignment />
-            </ProtectedRoute>
-          } />
-          <Route path="/submissions/:assignmentId" element={
-            <ProtectedRoute>
-              <SubmissionList />
-            </ProtectedRoute>
-          } />
-          <Route path="/submit/:assignmentId" element={
-            <ProtectedRoute>
-              <SubmitAssignment />
-            </ProtectedRoute>
-          } />
-          <Route path="/forum/:courseId" element={
-            <ProtectedRoute>
-              <DiscussionForum />
-            </ProtectedRoute>
-          } />
-          <Route path="/materials/:courseId" element={
-            <ProtectedRoute>
-              <CourseMaterials />
-            </ProtectedRoute>
-          } />
-          <Route path="/grades" element={
-            <ProtectedRoute>
-              <GradesList />
-            </ProtectedRoute>
-          } />
-          <Route path="/achievements" element={
-            <ProtectedRoute>
-              <Achievements />
-            </ProtectedRoute>
-          } />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/courses" element={<CourseList />} />
+          <Route path="/courses/:id" element={<CourseDetail />} />
+          <Route path="/create-course" element={<CreateCourse />} />
+          <Route path="/assignments" element={<AssignmentList />} />
+          <Route path="/create-assignment" element={<CreateAssignment />} />
+          <Route path="/submissions/:assignmentId" element={<SubmissionList />} />
+          <Route path="/submit/:assignmentId" element={<SubmitAssignment />} />
+          <Route path="/forum/:courseId" element={<DiscussionForum />} />
+          <Route path="/materials/:courseId" element={<CourseMaterials />} />
+          <Route path="/grades" element={<GradesList />} />
+          <Route path="/achievements" element={<Achievements />} />
           <Route path="/progress" element={
-            <ProtectedRoute>
-              <div style={{ padding: '40px', textAlign: 'center' }}>
-                <h2>Learning Progress</h2>
-                <p>Detailed progress tracking page coming soon!</p>
-              </div>
-            </ProtectedRoute>
+            <div style={{ padding: '40px', textAlign: 'center' }}>
+              <h2>Learning Progress</h2>
+              <p>Detailed progress tracking page coming soon!</p>
+            </div>
           } />
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          } />
-          <Route path="/settings" element={
-            <ProtectedRoute>
-              <AccountSettings />
-            </ProtectedRoute>
-          } />
-          <Route path="/forums" element={
-            <ProtectedRoute>
-              <Forums />
-            </ProtectedRoute>
-          } />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<AccountSettings />} />
+          <Route path="/forums" element={<Forums />} />
           <Route path="/certificates" element={
-            <ProtectedRoute>
-              <div style={{ padding: '40px', textAlign: 'center' }}>
-                <h2>My Certificates</h2>
-                <p>Certificates page coming soon!</p>
-              </div>
-            </ProtectedRoute>
+            <div style={{ padding: '40px', textAlign: 'center' }}>
+              <h2>My Certificates</h2>
+              <p>Certificates page coming soon!</p>
+            </div>
           } />
-          <Route path="/help" element={
-            <ProtectedRoute>
-              <HelpSupport />
-            </ProtectedRoute>
-          } />
+          <Route path="/help" element={<HelpSupport />} />
           <Route path="/analytics" element={
-            <ProtectedRoute>
-              <div style={{ padding: '40px', textAlign: 'center' }}>
-                <h2>Teaching Analytics</h2>
-                <p>Analytics page coming soon!</p>
-              </div>
-            </ProtectedRoute>
+            <div style={{ padding: '40px', textAlign: 'center' }}>
+              <h2>Teaching Analytics</h2>
+              <p>Analytics page coming soon!</p>
+            </div>
           } />
           <Route path="/manage-courses" element={
-            <ProtectedRoute>
-              <div style={{ padding: '40px', textAlign: 'center' }}>
-                <h2>Course Management</h2>
-                <p>Course management page coming soon!</p>
-              </div>
-            </ProtectedRoute>
+            <div style={{ padding: '40px', textAlign: 'center' }}>
+              <h2>Course Management</h2>
+              <p>Course management page coming soon!</p>
+            </div>
           } />
-          <Route path="/" element={<Navigate to={user ? "/dashboard" : "/"} />} />
+          <Route path="/" element={<LandingPage />} />
         </Routes>
       </main>
       
